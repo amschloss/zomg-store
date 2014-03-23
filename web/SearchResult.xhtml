@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Search Results</title>
+        <h:outputStylesheet library="css" name="general.css"  />
+    </h:head>
+    <h:body>
+        <h:graphicImage library="images" name="logo-sm.png" styleClass="logo"/>
+        <div class="navHead">
+            <h:form>
+                <h:commandLink action="AdvSearch" styleClass="navBtn" value="Search" />
+                <h:commandLink action="ViewCart" styleClass="navBtn" value="View Cart" />
+                <h:commandLink action="AdminPage" styleClass="navBtn" value="Administration" />
+            </h:form>
+        </div>
+        <div class="header">
+            <h1>Product Search -- Results</h1>
+        </div>
+        <h:form styleClass="content" >
+            <h:outputText value="#{srchBean.status}" />
+            <h:dataTable value="#{srchBean.products}" var="p" style="width:100%">
+                <h:column>
+                    <h:graphicImage value="#{p.imageURL}" style="width:200px; height:100px"/>
+                </h:column>
+                <h:column>
+                    <div style="width:300px;text-align:center">
+                        #{p.productName}
+                    </div>
+                </h:column>
+                <h:column>
+                    $ #{p.price}
+                </h:column>
+                <h:column>
+                    <div style="text-align:right;width:200px">
+                        <h:commandLink action="#{srchBean.moreInfo(p)}" value="Full Product Listing" /><br />
+                        <h:commandLink action="#{cart.addToCart(p)}" value="Add to Shopping Cart" />
+                    </div>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </h:body>
+</html>
+

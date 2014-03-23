@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Shopping Cart</title>
+        <h:outputStylesheet library="css" name="general.css"  />
+    </h:head>
+    <h:body>
+        <h:graphicImage library="images" name="logo-sm.png" styleClass="logo"/>
+        <div class="navHead">
+            <h:form>
+                <h:commandLink action="AdvSearch" styleClass="navBtn" value="Search" />
+                <h:commandLink action="ViewCart" styleClass="navBtn" value="View Cart" />
+                <h:commandLink action="AdminPage" styleClass="navBtn" value="Administration" />
+            </h:form>
+        </div>
+        <div class="header">
+            <h1>Shopping Cart</h1>
+        </div>
+        <h:form styleClass="content">
+            <div style="margin:auto">
+                <h:outputText value="#{cart.status}" />
+                <h:dataTable value="#{cart.cart}" var="line">
+                    <h:column>
+                        <f:facet name="header">Item Name</f:facet>
+                        #{line.product.productName}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Price</f:facet>
+                        $ #{line.product.price}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Quantity</f:facet>
+                        <h:inputText value="#{line.quantity}" style="width:50px"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Ext. Price</f:facet>
+                        $ #{line.extPrice}
+                    </h:column>
+                    <h:column>
+                        <h:commandButton action="#{cart.updateLine(line)}" value="Update" />
+                    </h:column>
+                </h:dataTable>
+                <h:panelGroup style="float:right">
+                    <h:commandLink action="SearchResult" value="Back to Search Results" />
+                    <h:commandButton action="#{cart.clear}" value="Clear Cart and Start Over" />
+                    <h:commandButton action="#{cart.submitCart}" value="SUBMIT" />
+                </h:panelGroup>
+            </div>
+        </h:form>
+    </h:body>
+</html>
+

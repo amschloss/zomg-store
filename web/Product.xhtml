@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Product Details</title>
+        <h:outputStylesheet library="css" name="general.css" />
+        <h:outputStylesheet library="css" name="product.css" />
+    </h:head>
+    <h:body>
+        <h:graphicImage library="images" name="logo-sm.png" styleClass="logo"/>
+        <div class="navHead">
+            <h:form>
+                <h:commandLink action="AdvSearch" styleClass="navBtn" value="Search" />
+                <h:commandLink action="ViewCart" styleClass="navBtn" value="View Cart" />
+                <h:commandLink action="AdminPage" styleClass="navBtn" value="Administration" />
+            </h:form>
+        </div>
+        <div class="header">
+            <h1>Product Details: #{srchBean.selectedProduct.productName}</h1>
+        </div>
+        <div styleClass="content">
+            <h:form>
+                <h:panelGrid columns="1" style="float:left">
+                    <h:graphicImage value="#{srchBean.selectedProduct.imageURL}" />
+                    <h:outputText value="#{srchBean.selectedProduct.description}" />
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Not recommended for children under the age of " />
+                        <h:outputText value="#{srchBean.selectedProduct.minAge}" />
+                        <h:outputLabel value="Intended for people under the age of " />
+                        <h:outputText value="#{srchBean.selectedProduct.maxAge}" />
+                    </h:panelGrid>
+                </h:panelGrid>
+                <h:commandLink action="#{cart.addToCart(srchBean.selectedProduct)}" styleClass="action" value="Add to Shopping Cart"/>
+                <h:commandLink action="SearchResult" styleClass="action" value="Back to Search Results"/>
+            </h:form>
+        </div>
+    </h:body>
+</html>
+

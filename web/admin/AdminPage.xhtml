@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- 
+ name: Adam Schloss
+ class: CMIS 440
+ date: 6 Oct 2012
+ 
+ Final Project
+ 
+ Product information form
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Webstore Administration</title>
+        <h:outputStylesheet library="css" name="general.css"  />
+        <h:outputStylesheet library="css" name="admin.css"  />
+    </h:head>
+    <h:body>
+<h:graphicImage library="images" name="logo-sm.png" styleClass="logo"/>
+        <div class="navHead">
+            <h:form>
+                <h:commandLink action="AdvSearch" styleClass="navBtn" value="Search" />
+                <h:commandLink action="ViewCart" styleClass="navBtn" value="View Cart" />
+                <h:commandLink action="#{prodBean.doLogout}" styleClass="navBtn" value="Log Out" />
+            </h:form>
+        </div>
+        <div class="header">
+            <h1>Product Information Administration Page</h1>
+        </div>
+        <div class="content">
+        <h3>Search instructions</h3>
+        <p>Searches must be carried out by ID number. Sorry.</p>
+        <h:form style="float:left">
+            <h:panelGrid columns="1" style="width:500px;">
+                <h:panelGrid columns="2" styleClass="inputs" style="width:100%">
+                    <h:outputLabel value="ID:" />
+                    <h:inputText value="#{prodBean.ID}"/>
+                    <h:outputLabel value="Category:" />
+                    <h:selectOneMenu value="#{prodBean.category}">
+                        <f:selectItems value="#{catBean.categories}" />
+                    </h:selectOneMenu>
+                    <h:outputLabel value="Product Name:" />
+                    <h:inputText value="#{prodBean.productName}"/>
+                    <h:outputLabel value="Description:" />
+                    <h:inputTextarea value="#{prodBean.description}"/>
+                    <h:outputLabel value="Image link:" />
+                    <h:inputText value="#{prodBean.imageURL}"/>
+                    <h:outputLabel value="Price:" />
+                    <h:inputText value="#{prodBean.price}"/>
+                    <h:outputLabel value="Minimum recommended age:" />
+                    <h:inputText value="#{prodBean.minAge}"/>
+                    <h:outputLabel value="Maximum recommended age:" />
+                    <h:inputText value="#{prodBean.maxAge}"/>
+                    <h:outputLabel value="Inventory count:" />
+                    <h:inputText value="#{prodBean.invCount}"/>
+                </h:panelGrid>
+                <h:panelGrid columns="5" style="width:100%" styleClass="btns">
+                    <h:commandLink value="Search" action="#{prodBean.doSearch}" styleClass="button"/>
+                    <h:commandLink value="Insert" action="#{prodBean.doInsert}" styleClass="button"/>
+                    <h:commandLink value="Update" action="#{prodBean.doUpdate}" styleClass="button"/>
+                    <h:commandLink value="Delete" action="#{prodBean.doDelete}" styleClass="button"/>
+                    <h:commandLink value="Clear" action="#{prodBean.doClear}" styleClass="button"/>
+                </h:panelGrid>
+                <h:outputText value="#{prodBean.status}"/>
+                <h:outputText value="#{catBean.status}"/>
+            </h:panelGrid>
+        </h:form>
+        <h:graphicImage value="#{prodBean.imageURL}" style="float:right"/>
+        </div>
+    </h:body>
+</html>
+

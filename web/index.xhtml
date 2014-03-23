@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Welcome to the ZOMG Games! Webstore</title>
+        <h:outputStylesheet library="css" name="general.css"  />
+    </h:head>
+    <h:body>
+        <div style="margin:auto; width:465px" >
+            <h:graphicImage library="images" name="logo-lg.png"/>
+            <p style="clear:both">
+                Welcome! Let's get started. What kind of game are you looking for?
+            </p>
+            <h:form>
+                <h:panelGrid columns="3">
+                    <h:outputLabel value="Select a category:" />
+                    <h:selectOneMenu value="#{srchBean.category}">
+                        <f:selectItems value="#{catBean.categories}" />
+                    </h:selectOneMenu>
+                    <h:commandButton action="${srchBean.doSimpleSearch}" value="Search" />
+                </h:panelGrid><br />
+                Or, you can start an <h:commandLink action="AdvSearch" value="advanced search" />.
+            </h:form>
+        </div>
+    </h:body>
+</html>
+
